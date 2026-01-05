@@ -1,0 +1,19 @@
+import telebot
+import os
+
+TOKEN = os.getenv("8120147279:AAFFB1_tAclWX-0lCke9gQoT8MgbQusDbFw")
+
+bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.send_message(
+        message.chat.id,
+        "Привет! Бот запущен через Railway."
+    )
+
+@bot.message_handler(func=lambda message: True)
+def echo(message):
+    bot.send_message(message.chat.id, message.text)
+
+bot.infinity_polling()
